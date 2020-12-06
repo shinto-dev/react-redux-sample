@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 import CourseList from "./CourseList";
 import { Redirect } from "react-router-dom";
 import Spinner from "../common/Spinner";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 class CoursesPage extends React.Component {
   state = {
@@ -28,10 +28,14 @@ class CoursesPage extends React.Component {
       });
   }
 
-  handleCourseDelete = (course) => {
-    this.props.actions.deleteCourse(course).then(() => {
+  handleCourseDelete = async (course) => {
+    // This still uses promises behind the scene. You can consider this as syntactic sugar on top of promises.
+    try {
+      await this.props.actions.deleteCourse(course);
       toast.success("Course deleted");
-    });
+    } catch (e) {
+      toast.error("Delete failed:" + e.message, { autoClose: false });
+    }
   };
 
   render() {
@@ -50,7 +54,10 @@ class CoursesPage extends React.Component {
             >
               Add Course
             </button>
-            <CourseList courses={this.props.courses} onDeleteClick={this.handleCourseDelete}/>
+            <CourseList
+              courses={this.props.courses}
+              onDeleteClick={this.handleCourseDelete}
+            />
           </>
         )}
       </>
