@@ -7,7 +7,8 @@ import CourseForm from "./CourseForm";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 
-function ManageCoursePage({
+// this export is useful for tests.
+export function ManageCoursePage({
   authors,
   courses,
   loadAuthors,

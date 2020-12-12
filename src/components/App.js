@@ -5,6 +5,7 @@ import Header from "./common/Header";
 import CoursesPage from "./courses/CoursePage";
 import HomePage from "./home";
 import PageNotFound from "./PageNotFound";
+// eslint-disable-next-line import/no-named-as-default
 import ManageCoursePage from "./courses/ManageCoursePage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
